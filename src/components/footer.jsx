@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 import { image } from './image';
 
-export default function Footer(){
-  return(
+export default function Footer() {
+  return (
     <footer>
       <div className="container">
         <section>
@@ -11,12 +11,15 @@ export default function Footer(){
               <img src={image} width={'100%'} alt="salafey logo" />
             </div>
           </div>
-          <h5>SALAFEY <br/>Decembre 2022</h5>
+          <h5>
+            SALAFEY <br />
+            Decembre 2022
+          </h5>
         </section>
         <section>
           <h4>Notre menu</h4>
 
-          <div className="menuElement">Objectif</div>
+          <div className="menuElement">Objectifs</div>
           <div className="menuElement">A Propos de nous</div>
           <div className="menuElement">Evenements</div>
           <div className="menuElement">Actualites</div>
@@ -25,5 +28,5 @@ export default function Footer(){
         <section></section>
       </div>
     </footer>
-  )
+  );
 }
