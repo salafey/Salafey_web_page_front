@@ -26,7 +26,10 @@ body {
 
 .titre {
   font-family: Kanit;
-  font-size: 3rem;
+  font-weight: 700;
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  line-height: 3rem;
 }
 
 @media (min-width: 1400px) {
@@ -208,6 +211,21 @@ footer {
           text-align: center;
         }
       }
+    }
+  }
+}
+
+.banniere {
+  height: 550px;
+  padding-top: 64px;
+
+  .banniereContent {
+    width: 60%;
+
+    h3 {
+      font-size: 1.5rem;
+      margin-top: 3rem;
+      line-height: 2.4rem;
     }
   }
 }
