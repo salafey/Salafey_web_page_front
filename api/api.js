@@ -1,14 +1,18 @@
-import useAutoLoad from "graphql-react/useAutoLoad";
-import useCacheEntry from "graphql-react/useCacheEntry.mjs";
-import useLoadGraphQL from "graphql-react/useLoadGraphQL.mjs";
-import useWaterfallLoad from "graphql-react/useWaterfallLoad.mjs";
-import React from "react";
+import React from 'react';
+
+const useAutoLoad = require('graphql-react/useAutoLoad.mjs');
+const useCacheEntry = require('graphql-react/useCacheEntry.mjs');
+const useLoadGraphQL = require('graphql-react/useLoadGraphQL.mjs');
+const useWaterfallLoad = require('graphql-react/useWaterfallLoad.mjs');
+// import useCacheEntry from 'graphql-react/useCacheEntry.mjs';
+// import useLoadGraphQL from 'graphql-react/useLoadGraphQL.mjs';
+// import useWaterfallLoad from 'graphql-react/useWaterfallLoad.mjs';
 
 // The query is just a string; no need to use `gql` from `graphql-tag`. The
 // special comment before the string allows editor syntax highlighting, Prettier
 // formatting and linting. The cache system doesn’t require `__typename` or `id`
 // fields to be queried.
-const query = /* GraphQL */ `{
+const query = `{
   bannierePrincipales {
     id
     title
@@ -20,7 +24,7 @@ const query = /* GraphQL */ `{
   }
 }`;
 
-export default function GitHubRepoStars({ repoId }) {
+export default function APITEST({ repoId }) {
   const cacheKey = `GitHubRepoStars-${repoId}`;
   const cacheValue = useCacheEntry(cacheKey);
 
@@ -35,20 +39,17 @@ export default function GitHubRepoStars({ repoId }) {
       loadGraphQL(
         cacheKey,
         // Fetch URI.
-        "https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/clatofm2m14pz01us34t20r01/master",
+        'https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/clatofm2m14pz01us34t20r01/master',
         // Fetch options.
         {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
             Authorization: `Bearer ${process.env.GITHUB_ACCESS_TOKEN}`,
           },
           body: JSON.stringify({
             query,
-            variables: {
-              repoId,
-            },
           }),
         }
       ),
@@ -66,7 +67,7 @@ export default function GitHubRepoStars({ repoId }) {
   // to set it up for a non-Next.js app, see:
   // https://github.com/jaydenseric/react-waterfall-render
   const isWaterfallLoading = useWaterfallLoad(cacheKey, load);
-
+  console.log(cacheValue);
   // When waterfall loading it’s efficient to skip rendering, as the app will
   // re-render once this step of the waterfall has loaded. If more waterfall
   // loading happens in children, those steps of the waterfall are awaited and
@@ -79,25 +80,21 @@ export default function GitHubRepoStars({ repoId }) {
       ? // Unlike many other GraphQL libraries, detailed loading errors are
         // cached and can be server side rendered without causing a
         // server/client HTML mismatch error.
-        "Error!"
+        'Error!'
       : cacheValue.data.repo.stargazers.totalCount
     : // In this situation no cache value implies loading. Use the
       // `useLoadingEntry` hook to manage loading in detail.
-      "Loading…";
+      'Loading…';
 }
 
-
-
-
-
-`{
-  bannierePrincipales {
-    id
-    title
-    paragraph
-    banniereLink
-    banniereImage {
-      url
-    }
-  }
-}`
+// `{
+//   bannierePrincipales {
+//     id
+//     title
+//     paragraph
+//     banniereLink
+//     banniereImage {
+//       url
+//     }
+//   }
+// }`
